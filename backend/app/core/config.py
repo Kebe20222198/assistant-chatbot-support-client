@@ -38,7 +38,8 @@ class Settings(BaseSettings):
     # ── FastAPI / Uvicorn ────────────────────────────────────────────────
     api_host: str = "0.0.0.0"
     api_port: int = 8000
-    cors_origins: list[str] = ["http://localhost:3000"]   # Next.js dev server
+    cors_origins: list[str] = ["http://localhost:3000",
+                               "http://127.0.0.1:3000"]   # Next.js dev server
 
     # ── Groq ─────────────────────────────────────────────────────────────
     groq_api_key: str = ""
@@ -72,6 +73,7 @@ class Settings(BaseSettings):
     retrieval_top_k: int = 50       # candidats avant reranking  ← changer 5 → 50
     rerank_top_n: int = 5           # passages envoyés au LLM    ← ajouter cette ligne
     similarity_threshold: float = 0.35
+
 
 @lru_cache()
 def get_settings() -> Settings:
